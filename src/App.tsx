@@ -9,7 +9,8 @@ function App() {
   const [count, setCount] = useState(0)
   const [name, setName] = useState<string>("John");
   const [age, setAge] = useState<number>(25);
-
+  const [hobby, setHobby] = useState<string>("gaming");
+  
   return (
     <>
       <section id="center">
