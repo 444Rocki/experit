@@ -1,5 +1,5 @@
-export const NewFile = ({name, age}:{name: string; age: number}) => {
+export const NewFile = ({name, age, hobby}:{name: string; age: number; hobby: string}) => {
   return (
-    <h1>{name}-{age}</h1>
+    <h1>{name}-{age}-{hobby}</h1>
   );
 };
