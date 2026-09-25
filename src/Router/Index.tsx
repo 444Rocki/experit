@@ -1,6 +1,6 @@
-import { Home } from "../Home";
-import { About } from "../About";
-import { Contact } from "../contact";
+import { Home } from "../Pages/Home";
+import { About } from "../Pages/About";
+import { Contact } from "../Pages/contact";
 
 export const Routes = [
   {
