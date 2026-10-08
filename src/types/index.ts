@@ -1,9 +1,15 @@
 export interface CommentsData {
   postId: number;
   id: number;
-  name: string;
-  email: string;
-  body: string;
+  userId: number;
+  title?: string;
+  body?: string;
+}
+
+export interface updateCommentDataProp {
+  userId?: number;
+  title?: string;
+  body?: string;
 }
 
 export interface FormInputProp {
