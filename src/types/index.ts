@@ -1,14 +1,15 @@
 export interface CommentsData {
   postId: number;
   id: number;
-  userId: number;
-  title?: string;
+  name: string;
+  email: string;
   body?: string;
 }
 
 export interface updateCommentDataProp {
-  userId?: number;
-  title?: string;
+  postId?: number;
+  email?: string;
+  name?: string;
   body?: string;
 }
 
