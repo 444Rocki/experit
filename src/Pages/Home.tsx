@@ -11,9 +11,10 @@ export const Home = () => {
 
   const [comments, setComments] = useState<CommentsData[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [title, setTitle] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [commentBody, setCommentBody] = useState<string>("");
-  const [userId, setUserId] = useState<number>(1);
+  const [postId, setPostId] = useState<number>(1);
 
   useEffect(() => {
   
@@ -38,10 +39,12 @@ const handleUpdateForm = (id: number, name: string, value: string) => {
   };
 
   const handleEdit = (id: number) => {
-    const title = comments.find((comment) => comment.id === id)?.title;
+    const email = comments.find((comment) => comment.id === id)?.email;
+    const name = comments.find((comment) => comment.id === id)?.name;
     const body = comments.find((comment) => comment.id === id)?.body;
     const payload = {
-      title,
+      email,
+      name,
       body,
     };
     updateCommentData({ id, data: payload })
@@ -68,9 +71,9 @@ const handleDelete = (id: number) => {
 
   const handleSubmit = () => {
     const payload: updateCommentDataProp = {
-      title,
-      body: commentBody,
-      userId,
+      email,
+      name,
+      postId,
     };
     createComment(payload)
       .then(() => {
@@ -93,12 +96,20 @@ const handleDelete = (id: number) => {
         <div className='flex justify-between items-center gap-2' key={comment.id}>
           <div className='flex gap-2 items-center justify-center w-full'>
             <FormInput
-              label={`title-${comment.id}`}
+              label={`name-${comment.id}`}
               type='text'
-              name='title'
-              id='title'
-              value={comment.title}
-              onChange={(e) => handleUpdateForm(comment.id, 'title', e.target.value)}
+              name='name'
+              id='name'
+              value={comment.name}
+              onChange={(e) => handleUpdateForm(comment.id, 'name', e.target.value)}
+            />
+            <FormInput
+              label={`email-${comment.id}`}
+              type='text'
+              name='email'
+              id='email'
+              value={comment.email}
+              onChange={(e) => handleUpdateForm(comment.id, 'email', e.target.value)}
             />
             <FormInput
               label={`body-${comment.id}`}
@@ -130,12 +141,20 @@ const handleDelete = (id: number) => {
         <Modal onClose={() => setIsModalOpen(false)}>
           <div className='flex flex-col gap-2 items-center justify-center w-full'>
             <FormInput
-              label={`title`}
+              label={`name`}
               type='text'
-              name='title'
-              id='title'
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              name='name'
+              id='name'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <FormInput
+              label={`email`}
+              type='text'
+              name='email'
+              id='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <FormInput
               label={`body`}
@@ -150,8 +169,8 @@ const handleDelete = (id: number) => {
               type='number'
               name='userId'
               id='userId'
-              value={userId.toString()}
-              onChange={(e) => setUserId(Number(e.target.value))}
+              value={postId.toString()}
+              onChange={(e) => setPostId(Number(e.target.value))}
             />
             <Buttons.solid
               color='bg-blue-400'
